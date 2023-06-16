@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
 
 
-function PhonebookApp() {
+function PhonebookApp(props) {
 
     const dispatch = useDispatch();
 
@@ -38,6 +38,9 @@ function PhonebookApp() {
 
   function handleSubmit(event) {
     event.preventDefault();
+     props.addItem('test');
+      
+
     const existingContactName = state.contacts.find(
       (contact) => contact.name.toLowerCase() === state.name.toLowerCase() 
     )
