@@ -32,15 +32,13 @@ function PhonebookApp(props) {
     setState({ ...state, number: event.target.value });
   };
 
-  function handleFilterChange  (event)  {
+  function handleFilterChange(event) {
     setState({ ...state, filter: event.target.value });
   };
 
   function handleSubmit(event) {
     event.preventDefault();
-     props.addItem('test');
-      
-
+    
     const existingContactName = state.contacts.find(
       (contact) => contact.name.toLowerCase() === state.name.toLowerCase() 
     )
@@ -55,6 +53,25 @@ function PhonebookApp(props) {
       alert(`${state.number} is already in the phonebook!`);
       return;
     }
+
+    // const noData = state.contacts((contact) => contact.name.toLowerCase() || contact.number() === "");
+    // if (noData) {
+    //   alert(`Please write your name and your phone number`);
+    //   return;
+    // }
+    
+    if (state.number.trim()  === "") {
+      event.preventDefault();
+      alert(`Please write your name and your phone number`);
+      return;
+    }
+    if (state.name.trim()  === "") {
+      event.preventDefault();
+      alert(`Please write your name and your phone number`);
+      return;
+    }
+
+
     const newContact = {
       id: nanoid(),
       name: state.name,
